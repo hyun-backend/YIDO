@@ -218,14 +218,13 @@ button {
 }
 
 /* 카드들을 영상 위로 */
-.footer-video .footer-cards {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.footer-video .footer-cards{
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
-  z-index: 2;
+
+  flex-wrap: wrap;   /* 화면 좁으면만 줄바꿈 */
 }
 
 /* 카드 이미지(있으면) */
@@ -328,6 +327,7 @@ button {
   padding-top: 12px;
 
 }
+
 
 
 
