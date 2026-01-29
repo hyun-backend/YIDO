@@ -223,8 +223,6 @@ button {
   justify-content: center;
   align-items: center;
   gap: 20px;
-
-  flex-wrap: wrap;   /* 화면 좁으면만 줄바꿈 */
 }
 
 /* 카드 이미지(있으면) */
@@ -327,6 +325,7 @@ button {
   padding-top: 12px;
 
 }
+
 
 
 
