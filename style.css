@@ -342,6 +342,11 @@ button {
 .footer-video .card{
   width: min(300px, 30vw);   /* 화면 줄면 카드도 같이 줄어듦 */
 }
+header{ height:70px; } /* 이미 있으니 확인용 */
+
+main.main{
+  padding-top: 70px;   /* 헤더 높이만큼 */
+}
 
 
 
