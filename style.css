@@ -160,20 +160,7 @@ main {
   z-index: 0;
 }
 
-/* ✅ 카드들은 video 위로 + 줄바꿈 반응형 */
-.footer-video .footer-cards {
-  position: relative;
-  z-index: 2;
 
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;          /* ✅ 6개 넘으면 아래로 떨어짐 */
-  justify-content: center;
-  align-content: center;
-  gap: 20px;
-
-  padding: 80px 20px;       /* 위아래 여백 */
-}
 
 .footer-video .card { position: relative; width: min(300px, 40vw); }
 
@@ -239,6 +226,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
