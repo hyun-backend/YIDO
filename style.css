@@ -103,11 +103,11 @@ header {
    MAIN
 ===================== */
 main {
-  background-image: url(../images/그릇5.jpg);
+  background-image: url(./images/그릇5.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* 메인 텍스트 */
@@ -327,6 +327,7 @@ button {
   padding-top: 12px;
 
 }
+
 
 
 
