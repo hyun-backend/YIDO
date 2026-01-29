@@ -84,7 +84,7 @@ main {
 
 .ment2 {
   position: absolute;
-  top: 100px;   /* ment1보다 조금 아래 */
+  top: 50px;   /* ment1보다 조금 아래 */
   left: 45px;
   font-size: 3em;
   color: lightgray;
@@ -239,6 +239,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
