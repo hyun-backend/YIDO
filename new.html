@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신상품목록</title>
+    <style>
+
+        html{
+            background-color: rgb(113, 113, 113);
+            
+        }
+
+        .container{
+            height: 600px;
+            
+            
+        }
+
+         ul{
+            display: flex;
+            list-style: none;
+            padding: 0;
+             margin: 0;
+            display: flex;
+        }
+        
+        ul.prod-list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;   
+        gap: 50px;
+        padding: 20px;
+        align-items: center;
+        padding-top: 170px;
+        }
+
+         .prod-list li{
+        width: calc((100% - 6 * 20px) / 7);  /* ✅ 7개 기준 */
+        max-width: 300px;   /* 너무 커지는 거 방지 */
+        position: relative;
+         
+         width: min(300px, 45vw); /* 화면 줄면 카드도 줄어듦 */
+         }
+            
+        
+        .prod-list .caption{
+            background-color: rgba(0, 0, 0, 0.437);
+            width: 300px;
+            height: 200px;
+            /* opacity: 0; */
+            transition: all 0.6s ease-in-out;
+            z-index : 10; /*다른 요소보다 위에 있게, 숫자가 높을수록*/
+            padding-top: 20px;
+            position: absolute; /*부모 기준으로 top에서 200px*/
+            bottom: 0;
+            
+            
+        }
+
+        .prod-list img{
+            width: 300px;
+            height: 200px;
+            gap: 10px;
+            outline: none;
+             border: none;
+         user-select: none;
+            
+        }
+
+        .caption {
+            color: white;
+            text-align: center;
+            
+        }
+
+        .prod-list li:hover .caption{
+            /* opacity: 1; */
+            transform: translateY(-50px);
+        }
+
+        .prod-list{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.prod-list li{
+  position: relative;
+  width: min(300px, 45vw); /* 화면 줄면 카드도 줄어듦 */
+}
+
+.prod-list img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-menu {
+  display: inline-block;
+  padding: 15px;
+  color: black;
+}
+
+.nav-menu:hover {
+  
+  color: rgb(194, 194, 194);
+}
+
+/* 드롭다운 */
+.menu-item {
+  position: relative;
+}
+
+.dropdown-content {
+  list-style: none;
+  display: none;               /* 기본 숨김 */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 160px;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.552);
+  border: 1px solid rgba(255, 255, 255, 0.552);
+}
+
+.menu-item:hover .dropdown-content {
+  display: block;              /* hover 시 표시 */
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 12px;
+  color: rgba(128, 128, 128, 0.8);
+  background: transparent;
+}
+
+.dropdown-content li a:hover {
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: gray;
+  position: fixed;
+  top: 0;
+  z-index: 9999;   /* 다른 요소 위로 */
+  width: 100%;
+}
+
+.logo {
+  margin-left: 30px;
+}
+
+.logo img {
+  width: 200px;
+  height: 50px;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center; /* 메뉴 가운데 */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+        
+    </style>
+</head>
+<header>
+<nav class="nav">
+      <ul class="menu">
+        <li class="menu-item">
+  
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">PRODUCTS</a>
+          <ul class="dropdown-content">
+            <li><a href="index.html#footer">NEW</a></li>
+            <li><a href="index.html#products">POPULAR</a></li>
+            <li><a href="new.html">ALL</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">COMPANY</a>
+          <ul class="dropdown-content">
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="about.html">HISTORY</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">MENU</a>
+          <ul class="dropdown-content">
+            <li><a href="form.html">JOIN</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">CART</a>
+          <ul class="dropdown-content">
+            <li><a href="#">WISHLIST</a></li>
+            <li><a href="#">RECENT ORDER</a></li>
+            <li><a href="#">ORDER NOW</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    </header>
+<body>
+    <video autoplay muted loop
+       style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
+    <source src="/images/305660_medium.mp4">
+</video>
+    <div class="container">
+        <ul class="prod-list">
+            <li>
+                <img src="/images/그릇3.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>MOON</h2>
+                    <p>상품 희고 둥근 달의 형상</p>
+                    <p>가격: 59,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/도자기8.jpeg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Shape</h2>
+                    <p>곡선의 유려함을 자유롭게</p>
+                    <p>가격: 39,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇12.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Yellow&Blue</h2>
+                    <p>금과 청의 마무리로 조화롭게</p>
+                    <p>가격: 69,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇13.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Circle</h2>
+                    <p>모던한 색상과 원형의 어울림</p>
+                    <p>가격: 59,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇17.jpeg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Polar</h2>
+                    <p>북극성의 금빛을 담아</p>
+                    <p>가격: 126,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇18.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Lake</h2>
+                    <p>호수처럼 잔잔한 질감</p>
+                    <p>가격: 110,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇19.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Gray</h2>
+                    <p>회백색과 금색의 모던한 조화</p>
+                    <p>가격: 45,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇20.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Frackle</h2>
+                    <p>한 줄에서 끝나는 금빛 조각</p>
+                    <p>가격: 180,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇21.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Ladder</h2>
+                    <p>사다리를 표현한 섬세함</p>
+                    <p>가격: 90,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇22.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Light</h2>
+                    <p>빛과 닮은 절묘함</p>
+                    <p>가격: 69,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇23.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Sunset</h2>
+                    <p>황혼을 닮은 오묘한 빛</p>
+                    <p>가격: 80,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇24.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Sand</h2>
+                    <p>모래와 같은 투박한 질감</p>
+                    <p>가격: 49,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇25.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Bold</h2>
+                    <p>과감한 금색 터치</p>
+                    <p>가격: 69,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇26.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Coral</h2>
+                    <p>산호빛이 아름다운 명작</p>
+                    <p>가격: 290,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇28.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Line</h2>
+                    <p>인상적인 한 획</p>
+                    <p>가격: 129,000원</p>
+                </div>
+            </li>
+            <li>
+                <img src="/images/그릇29.jpg" width="400" alt="상품1">
+                <div class="caption">
+                    <h2>Goblet</h2>
+                    <p>술잔과 닮은 아담함</p>
+                    <p>가격: 120,000원</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    
+</body>
+</html>
