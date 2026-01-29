@@ -149,6 +149,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+   margin-top: 150px;
 
 }
 
@@ -343,6 +344,7 @@ button {
 .footer-video .card{
   width: min(300px, 30vw);   /* 화면 줄면 카드도 같이 줄어듦 */
 }
+
 
 
 
