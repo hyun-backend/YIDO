@@ -94,7 +94,7 @@ main {
    PRODUCT LIST (카드)
 ===================== */
 .container {
-  /* ✅ height:100px 삭제! 이게 카드 위로 올리는 주범 */
+  height:100px 삭제! 이게 카드 위로 올리는 주범
   min-height: calc(100vh - 70px);  /* 헤더 제외 높이 */
   display: flex;
   justify-content: center;
@@ -110,7 +110,7 @@ main {
   gap: 20px;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* ✅ 화면 좁으면 자동 줄바꿈 */
+  
 }
 
 .prod-list li { position: relative; }
@@ -239,6 +239,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
