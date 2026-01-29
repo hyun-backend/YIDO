@@ -328,25 +328,7 @@ button {
   padding-top: 12px;
 
 }
-/* ===== FOOTER 카드 반응형 ===== */
 
-.footer-video .footer-cards{
-  display: flex;
-  flex-wrap: wrap;          /* 6개 넘으면 자동 줄바꿈 */
-  justify-content: center; 
-  gap: 20px;
-  max-width: 1200px;       /* 한 줄에 너무 많이 퍼지지 않게 */
-}
-
-/* 카드 크기 반응형 */
-.footer-video .card{
-  width: min(300px, 30vw);   /* 화면 줄면 카드도 같이 줄어듦 */
-}
-header{ height:70px; } /* 이미 있으니 확인용 */
-
-main.main{
-  padding-top: 70px;   /* 헤더 높이만큼 */
-}
 
 
 
