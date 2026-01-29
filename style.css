@@ -328,6 +328,18 @@ button {
   padding-top: 12px;
 
 }
+.footer-video .footer-cards{
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px !important;
+  z-index: 9999 !important;
+}
+.footer-video .bg-video{
+  z-index: 0 !important;
+}
 
 
 
