@@ -103,7 +103,7 @@ header {
    MAIN
 ===================== */
 main {
-   background : red;
+   background-color : red;
   background-image: url(/images/그릇5.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -328,6 +328,7 @@ button {
   padding-top: 12px;
 
 }
+
 
 
 
