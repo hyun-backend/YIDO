@@ -76,7 +76,7 @@ main {
 /* 메인 텍스트 (main 기준으로 배치됨) */
 .ment1 {
   position: absolute;
-  top: 120px;   /* ✅ 300 너무 내려가면 카드랑 겹침: 조절 */
+  top: 100px;   /* ✅ 300 너무 내려가면 카드랑 겹침: 조절 */
   left: 45px;
   font-size: 1em;
   color: lightgray;
@@ -84,7 +84,7 @@ main {
 
 .ment2 {
   position: absolute;
-  top: 190px;   /* ment1보다 조금 아래 */
+  top: 100px;   /* ment1보다 조금 아래 */
   left: 45px;
   font-size: 3em;
   color: lightgray;
@@ -239,6 +239,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
