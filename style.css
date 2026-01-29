@@ -145,7 +145,7 @@ button {
    PRODUCT LIST (카드)
 ===================== */
 .container {
-  height: 100px;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -328,6 +328,7 @@ button {
   padding-top: 12px;
 
 }
+
 
 
 
