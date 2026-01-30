@@ -16,6 +16,20 @@
         background-position: center;   
         background-size: contain; 
         margin-top: 100px;    
+            /* ------새로 추가--------- */
+        opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        animation: fadeUp 1s ease forwards;   
+        }
+
+        @keyframes fadeUp {
+            to{
+                opacity: 1;
+            transform: translateY(0);
+            }
+          }
+            /*-------------------------------  */
         }
 
         body{
@@ -23,12 +37,16 @@
 }
             
         .firPart span{
-            color: rgb(0, 0, 0);
+            color: rgb(100, 100, 100);
             font-size: 50px;
             position:absolute;
             top:52%;
             right:5%;
+            /* ------새로 추가--------- */
+            transform: translateY(40px);
+            transition: all 1s ease;
             animation: moveIn 4s ease-in-out;
+            /*-------------------------------  */
         }
         @keyframes moveIn {
             from{
@@ -49,7 +67,7 @@
             
         }
         .secondPart {
-            color: rgb(0, 0, 0);
+            color: rgb(100, 100, 100);
             font-size: 50px;
             position:absolute;
             top:40%;
@@ -278,4 +296,5 @@ a {
   </div>
   
 </footer>
+
 </html>
