@@ -94,7 +94,6 @@ main {
    PRODUCT LIST (카드)
 ===================== */
 .container {
-  min-height: calc(100vh - 70px);  /* 헤더 제외 높이 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -238,6 +237,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
