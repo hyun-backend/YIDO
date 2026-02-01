@@ -98,9 +98,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* ✅ 카드 조금 아래로 내리고 싶으면 숫자만 조절 */
-  padding-top: 120px;
 }
 
 .prod-list {
@@ -238,6 +235,7 @@ main {
   border-top: 1px solid #ddd;
   padding-top: 12px;
 }
+
 
 
 
