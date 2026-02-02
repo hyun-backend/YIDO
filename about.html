@@ -1,226 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-        }
-        section{
-            height: 900px;
-            width: 100%;
-        background: url(./images/brandimage01.png);
-        background-repeat: no-repeat;
-        background-position: center;   
-        background-size: contain; 
-        margin-top: 100px;    
-            /* ------새로 추가--------- */
-        opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s ease;
-        animation: fadeUp 1s ease forwards;   
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-        @keyframes fadeUp {
-            to{
-                opacity: 1;
-            transform: translateY(0);
-            }
-          }
-            /*-------------------------------  */
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-        body{
-  font-family: 'Poppins', sans-serif;
-}
-            
-        .firPart span{
-            color: rgb(255, 255, 255);
-            font-size: 50px;
-            position:absolute;
-            top:52%;
-            right:5%;
-            /* ------새로 추가--------- */
-            transform: translateY(40px);
-            transition: all 1s ease;
-            animation: moveIn 4s ease-in-out;
-            /*-------------------------------  */
-        }
-        @keyframes moveIn {
-            from{
-                right: 40%;
-            } to{
-                right: 10%;
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-            }
-            
-        }
-         @keyframes moveOut {
-            from{
-                right: 30%;
-            } to{
-                right: 15%;
+    /* ✅ footer 항상 맨 아래(Sticky footer) */
+    body{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      padding-top: 70px; /* fixed header */
+    }
 
-            }
-            
-        }
-        .secondPart {
-            color: rgb(255, 255, 255);
-            font-size: 50px;
-            position:absolute;
-            top:40%;
-            right:5%;
-            animation: moveOut 2s ease-out;
-            
-        }
-        .biz-footer{
-  background: #f5f5f5;
-  color: #666;
-  padding: 30px 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    /* 배경 비디오 */
+    .bg-video{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-.biz-inner{
-  max-width: 1100px;
-  margin: 0;
+    /* ✅ 콘텐츠 영역이 남는 높이를 먹어서 footer를 아래로 밀어줌 */
+    main{
+      flex: 1;
+    }
 
-  padding: 0 30px;
-}
+    /* 헤더 */
+    header {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+      width: 100%;
+    }
 
-.biz-top{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  font-size: 13px;
-  margin-bottom: 14px;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
 
-.biz-top a{
-  color: #666;
-}
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
 
-.biz-top a:hover{
-  color: #222;
-}
+    a {
+      text-decoration: none;
+      color: gray;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.biz-info{
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
+    .nav-menu {
+      display: inline-block;
+      padding: 15px;
+      color: black;
+    }
 
-.biz-info p{
-  margin: 4px 0;
-}
+    .nav-menu:hover { color: rgb(194, 194, 194); }
 
-.biz-copy{
-  font-size: 12px;
-  color: #888;
-  border-top: 1px solid #ddd;
-  padding-top: 12px;
-}
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
+    .menu-item { position: relative; }
 
-.nav-menu {
-  display: inline-block;
-  padding: 15px;
-  color: black;
-}
+    .dropdown-content {
+      list-style: none;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 160px;
+      padding: 10px 0;
+      background-color: rgba(255, 255, 255, 0.552);
+      border: 1px solid rgba(255, 255, 255, 0.552);
+    }
 
-.nav-menu:hover {
-  
-  color: rgb(194, 194, 194);
-}
+    .menu-item:hover .dropdown-content { display: block; }
 
-/* 드롭다운 */
-.menu-item {
-  position: relative;
-}
+    .dropdown-content li a {
+      display: block;
+      padding: 10px 12px;
+      color: rgba(128, 128, 128, 0.8);
+      background: transparent;
+    }
 
-.dropdown-content {
-  list-style: none;
-  display: none;               /* 기본 숨김 */
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 160px;
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.552);
-  border: 1px solid rgba(255, 255, 255, 0.552);
-}
+    .dropdown-content li a:hover {
+      background-color: #f0f0f0;
+      color: gray;
+    }
 
-.menu-item:hover .dropdown-content {
-  display: block;              /* hover 시 표시 */
-}
+    /* 섹션 */
+    section{
+      height: 900px;
+      width: 100%;
+      background: url(./images/brandimage01.png) no-repeat center / contain;
+      margin-top: 100px;
 
-.dropdown-content li a {
-  display: block;
-  padding: 10px 12px;
-  color: rgba(128, 128, 128, 0.8);
-  background: transparent;
-}
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+      position: relative; /* absolute 텍스트 기준 */
+    }
 
-.dropdown-content li a:hover {
-  background-color: #f0f0f0;
-  color: gray;
-}
-header {
-  height: 70px;
-  display: flex;
-  align-items: center;
-  background-color: gray;
-  position: fixed;
-  top: 0;
-  z-index: 9999;   /* 다른 요소 위로 */
-  width: 100%;
-}
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.logo {
-  margin-left: 30px;
-}
+    .firPart span{
+      color: rgb(255, 255, 255);
+      font-size: 50px;
+      position:absolute;
+      top:52%;
+      right:5%;
+      animation: moveIn 4s ease-in-out;
+    }
 
-.logo img {
-  width: 200px;
-  height: 50px;
-  display: block;
-}
+    @keyframes moveIn {
+      from{ right: 40%; }
+      to{ right: 10%; }
+    }
 
-.nav {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: center; /* 메뉴 가운데 */
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    .secondPart {
+      color: rgb(255, 255, 255);
+      font-size: 50px;
+      position:absolute;
+      top:40%;
+      right:5%;
+      animation: moveOut 2s ease-out;
+    }
 
-a {
-  text-decoration: none;
-  color: gray;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-        
-    </style>
+    @keyframes moveOut {
+      from{ right: 30%; }
+      to{ right: 15%; }
+    }
+
+    /* 푸터 */
+    .biz-footer{
+      background: #f5f5f5;
+      color: #666;
+      padding: 30px 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .biz-inner{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .biz-top{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .biz-top a{ color: #666; }
+    .biz-top a:hover{ color: #222; }
+
+    .biz-info{
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .biz-info p{ margin: 4px 0; }
+
+    .biz-copy{
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+  </style>
 </head>
-<header>
-<nav class="nav">
-      <ul class="menu">
-        <li class="menu-item">
-  
 
+<body>
+  <header>
+    <nav class="nav">
+      <ul class="menu">
         <li class="menu-item">
           <a href="#" class="nav-menu">PRODUCTS</a>
           <ul class="dropdown-content">
@@ -255,47 +231,45 @@ a {
         </li>
       </ul>
     </nav>
-    </header>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-<body>
-    <video autoplay muted loop
-       style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
+  </header>
+
+  <video class="bg-video" autoplay muted loop>
     <source src="./images/305660_medium.mp4">
-</video>
+  </video>
+
+  <!-- ✅ footer를 밀어낼 “콘텐츠 영역” -->
+  <main>
     <section>
-        <div class = "firPart">
-            <span>  one piece, <br>
-                one choice at a time.  </span> <br>
-            <p class="secondPart">
-                This is the kind of life we create
-            </p>
-        </div>
+      <div class="firPart">
+        <span>one piece,<br>one choice at a time.</span>
+        <p class="secondPart">This is the kind of life we create</p>
+      </div>
     </section>
+  </main>
+
+  <footer class="biz-footer" id="footer">
+    <div class="biz-inner">
+      <div class="biz-top">
+        <a href="#">ABOUT</a>
+        <a href="#">회사소개</a>
+        <a href="#">매장안내</a>
+        <a href="#">입점상담</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+      </div>
+
+      <div class="biz-info">
+        <p>상호명: 블루보틀코리아 대표: 홍길동 사업자등록번호: 123-45-67890</p>
+        <p>주소: 서울특별시 강남구 … 고객센터: 1644-4490 (평일 09:00~18:00)</p>
+        <p>통신판매업 신고번호: 제2026-서울강남-0000호 이메일: help@bluebottle.co.kr</p>
+      </div>
+
+      <div class="biz-copy">
+        © 2026 BLUE BOTTLE KOREA. ALL RIGHTS RESERVED
+      </div>
+    </div>
+  </footer>
 </body>
-</footer>
-  <footer class="biz-footer">
-  <div class="biz-inner">
-    <div class="biz-top">
-      <a href="#">ABOUT</a>
-      <a href="#">회사소개</a>
-      <a href="#">매장안내</a>
-      <a href="#">입점상담</a>
-      <a href="#">개인정보처리방침</a>
-      <a href="#">이용약관</a>
-    </div>
-
-    <div class="biz-info">
-      <p>상호명: 블루보틀코리아  대표: 홍길동  사업자등록번호: 123-45-67890</p>
-      <p>주소: 서울특별시 강남구 …  고객센터: 1644-4490 (평일 09:00~18:00)</p>
-      <p>통신판매업 신고번호: 제2026-서울강남-0000호  이메일: help@bluebottle.co.kr</p>
-    </div>
-
-    <div class="biz-copy">
-      © 2026 BLUE BOTTLE KOREA. ALL RIGHTS RESERVED
-    </div>
-  </div>
-  
-</footer>
-
 </html>
+
 
