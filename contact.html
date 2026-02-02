@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 폼 예제</title>
+  <style>
+
+    body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   /* 가로 중앙 */
+  align-items: center;       /* 세로 중앙 */
+  background: #eee;          /* 배경 색 (선택) */
+}
+
+main {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-menu {
+  display: inline-block;
+  padding: 15px;
+  color: black;
+}
+
+.nav-menu:hover {
+  
+  color: rgb(194, 194, 194);
+}
+
+/* 드롭다운 */
+.menu-item {
+  position: relative;
+}
+
+.dropdown-content {
+  list-style: none;
+  display: none;               /* 기본 숨김 */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 160px;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.552);
+  border: 1px solid rgba(255, 255, 255, 0.552);
+}
+
+.menu-item:hover .dropdown-content {
+  display: block;              /* hover 시 표시 */
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 12px;
+  color: rgba(128, 128, 128, 0.8);
+  background: transparent;
+}
+
+.dropdown-content li a:hover {
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: gray;
+  position: fixed;
+  top: 0;
+  z-index: 9999;   /* 다른 요소 위로 */
+  width: 100%;
+}
+
+.logo {
+  margin-left: 30px;
+}
+
+.logo img {
+  width: 200px;
+  height: 50px;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center; /* 메뉴 가운데 */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+  </style>
+  <link rel="stylesheet" href="naver_form.css">
+</head>
+
+<header class="site-header">
+    <!-- <div class="logo">
+      <a href="#"><img src="./images/logo.png" alt="logo" width="100" /></a>
+    </div> -->
+
+    <nav class="nav">
+      <ul class="menu">
+        <li class="menu-item">
+  
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">PRODUCTS</a>
+          <ul class="dropdown-content">
+            <li><a href="index.html#footer">NEW</a></li>
+            <li><a href="index.html#products">POPULAR</a></li>
+            <li><a href="new.html">ALL</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">COMPANY</a>
+          <ul class="dropdown-content">
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="about.html">HISTORY</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">MENU</a>
+          <ul class="dropdown-content">
+            <li><a href="form.html">JOIN</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-item">
+          <a href="#" class="nav-menu">CART</a>
+          <ul class="dropdown-content">
+            <li><a href="#">WISHLIST</a></li>
+            <li><a href="#">RECENT ORDER</a></li>
+            <li><a href="#">ORDER NOW</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+<body>
+  <video autoplay muted loop
+       style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
+    <source src="./images/305660_medium.mp4">
+</video>
+  <main>
+<h1>CONTACT</h1>
+<form>
+
+ <img src="/images/icons8-인스-타-그램-50.png" alt="">
+ <img src="/images/icons8-facebook-new-50.png" alt="">
+</form>
+
+<p class="footer-text">
+  이용약관 | 개인정보처리방침 | 고객센터<br>
+  © 2026 Sample Corp.
+</p>
+</main>
+</body>
+
+</html>
