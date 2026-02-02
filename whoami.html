@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      padding-top:70px;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#fff;
+      background:#2b2b2b;
+    }
+
+    /* bg video */
+    .bg-video{
+      position:fixed; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      z-index:-2;
+    }
+    .overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:-1;
+    }
+
+    /* header (YIDO 스타일 맞춤) */
+    header{
+      height:70px;
+      display:flex;
+      align-items:center;
+      background:rgba(120,120,120,0.95);
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:9999;
+    }
+    .nav{flex:1;display:flex;justify-content:center;align-items:center}
+    .menu{list-style:none;display:flex;gap:30px;align-items:center}
+    .menu-item{position:relative}
+    .nav-menu{
+      display:inline-block;
+      padding:15px;
+      color:#111;
+      font-weight:600;
+      font-size:14px;
+      text-decoration:none;
+    }
+    .nav-menu:hover{color:#c2c2c2}
+    .dropdown-content{
+      list-style:none;
+      display:none;
+      position:absolute;
+      top:100%;
+      left:50%;
+      transform:translateX(-50%);
+      min-width:170px;
+      padding:10px 0;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(255,255,255,0.55);
+    }
+    .menu-item:hover .dropdown-content{display:block}
+    .dropdown-content a{
+      display:block;
+      padding:10px 12px;
+      color:rgba(128,128,128,0.9);
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+    }
+    .dropdown-content a:hover{background:#f0f0f0;color:#555}
+
+    /* main */
+    main{flex:1; width:min(1100px,92vw); margin:0 auto; padding:70px 0 60px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:40px;
+      align-items:center;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; gap:24px}
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,0.35);
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:0.6px;
+      color:rgba(255,255,255,0.85);
+      background:rgba(0,0,0,0.15);
+      margin-bottom:16px;
+    }
+
+    h1{
+      font-size:48px;
+      line-height:1.1;
+      margin-bottom:14px;
+    }
+    .lead{
+      font-size:16px;
+      line-height:1.8;
+      color:rgba(255,255,255,0.9);
+      max-width:56ch;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:16px;
+      padding:22px;
+      backdrop-filter: blur(6px);
+    }
+
+    .profile{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:14px;
+    }
+    .avatar{
+      width:64px; height:64px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.18);
+      display:grid; place-items:center;
+      font-weight:800;
+      letter-spacing:1px;
+    }
+    .name{font-size:18px;font-weight:800}
+    .role{font-size:13px;color:rgba(255,255,255,0.75);margin-top:4px}
+
+    .pill-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.16);
+      font-size:12px;
+      color:rgba(255,255,255,0.85);
+    }
+
+    .section-title{
+      margin-top:34px;
+      margin-bottom:14px;
+      font-size:18px;
+      letter-spacing:0.4px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .item h3{
+      font-size:14px;
+      margin-bottom:8px;
+      color:rgba(255,255,255,0.95);
+    }
+    .item p{
+      font-size:13px;
+      line-height:1.7;
+      color:rgba(255,255,255,0.82);
+    }
+
+    .cta{
+      margin-top:26px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-block;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.22);
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+      background:rgba(0,0,0,0.18);
+    }
+    .btn:hover{background:rgba(255,255,255,0.10)}
+
+    /* footer */
+    .biz-footer{
+      background:#f5f5f5;
+      color:#666;
+      padding:30px 0;
+      width:100%;
+    }
+    .biz-inner{max-width:1100px;margin:0 auto;padding:0 30px}
+    .biz-top{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;margin-bottom:14px}
+    .biz-top a{color:#666;text-decoration:none;font-weight:600}
+    .biz-top a:hover{color:#222}
+    .biz-info{font-size:12px;line-height:1.7;margin-bottom:12px}
+    .biz-info p{margin:4px 0}
+    .biz-copy{font-size:12px;color:#888;border-top:1px solid #ddd;padding-top:12px}
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <nav class="nav">
+      <ul class="menu">
+        <li class="menu-item">
+          <a class="nav-menu" href="index.html">HOME</a>
+        </li>
+        <li class="menu-item">
+          <a class="nav-menu" href="#">PRODUCTS</a>
+          <ul class="dropdown-content">
+            <li><a href="index.html#products">POPULAR</a></li>
+            <li><a href="new.html">NEW</a></li>
+            <li><a href="new.html">ALL</a></li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a class="nav-menu" href="#">ABOUT</a>
+          <ul class="dropdown-content">
+            <li><a href="about.html">BRAND</a></li>
+            <li><a href="me.html">ME</a></li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a class="nav-menu" href="form.html">JOIN</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- bg -->
+  <video class="bg-video" autoplay muted loop>
+    <source src="./images/305660_medium.mp4" />
+  </video>
+  <div class="overlay"></div>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="badge">PORTFOLIO / ABOUT ME</span>
+        <h1>안녕하세요,<br>저는 <span style="opacity:.95;">백엔드를 목표로</span> 공부 중입니다.</h1>
+        <p class="lead">
+          국비 과정에서 프론트(HTML/CSS/JS)와 백엔드(Java/Spring)를 함께 배우고 있습니다.
+          지금은 “작게라도 끝까지 만들어서 배포해보기”를 기준으로 프로젝트를 진행하고 있고,
+          YIDO는 그 연습을 위한 브랜드 콘셉트 웹사이트입니다.
+        </p>
+
+        <div class="cta">
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="index.html">YIDO 보러가기</a>
+          <a class="btn" href="#skills">기술 스택</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="profile">
+          <div class="avatar">ME</div>
+          <div>
+            <div class="name">Park SeoHyun</div>
+            <div class="role">Backend-oriented | Java & Spring Boot</div>
+          </div>
+        </div>
+
+        <p style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.85);">
+          제가 중요하게 보는 건 “설명 가능한 코드”입니다.<br>
+          기능을 붙이고, 문제를 해결하고, 배포까지 경험하면서 실무 감각을 쌓는 중입니다.
+        </p>
+
+        <div class="pill-wrap">
+          <span class="pill">HTML/CSS</span>
+          <span class="pill">Responsive UI</span>
+          <span class="pill">Git & GitHub</span>
+          <span class="pill">Java</span>
+          <span class="pill">Spring Boot</span>
+          <span class="pill">REST API</span>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="skills">제가 할 수 있는 것</h2>
+    <section class="grid">
+      <div class="card item">
+        <h3>UI 구현</h3>
+        <p>레이아웃(Flex/Grid), 반응형, hover 인터랙션으로 사용자 경험을 챙깁니다.</p>
+      </div>
+      <div class="card item">
+        <h3>배포 경험</h3>
+        <p>GitHub Pages로 배포해서 “링크로 바로 보여주는” 포트폴리오 형태로 만듭니다.</p>
+      </div>
+      <div class="card item">
+        <h3>백엔드 확장 계획</h3>
+        <p>추후 Spring Boot API + DB 연동으로 상품/주문/회원 기능을 붙일 계획입니다.</p>
+      </div>
+    </section>
+
+    <h2 class="section-title">프로젝트에서 배운 것</h2>
+    <section class="grid">
+      <div class="card item">
+        <h3>브라우저/배포 환경 차이</h3>
+        <p>로컬과 GitHub Pages에서 레이아웃이 달라지는 문제를 해결하며 구조를 안정화했습니다.</p>
+      </div>
+      <div class="card item">
+        <h3>구조화</h3>
+        <p>header / main / footer 흐름을 정리하고 “sticky footer”로 화면이 짧아도 자연스럽게 보이게 했습니다.</p>
+      </div>
+      <div class="card item">
+        <h3>문제 해결</h3>
+        <p>원인 파악 → 최소 수정 → 재검증 순서로 디버깅 습관을 만들고 있습니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="biz-footer">
+    <div class="biz-inner">
+      <div class="biz-top">
+        <a href="about.html">ABOUT</a>
+        <a href="#">CONTACT</a>
+        <a href="#">PRIVACY</a>
+        <a href="#">TERMS</a>
+      </div>
+
+      <div class="biz-info">
+        <p>이 페이지는 학습/포트폴리오 목적의 개인 프로젝트입니다.</p>
+        <p>© 2026 YOUR NAME. ALL RIGHTS RESERVED</p>
+      </div>
+
+      <div class="biz-copy">
+        Built with HTML/CSS · Deployed on GitHub Pages
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
