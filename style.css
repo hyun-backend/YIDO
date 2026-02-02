@@ -1,40 +1,50 @@
 /* =====================
-   RESET
+   HEADER (FINAL COPY)
+   - PC: 가운데 메뉴 + hover 드롭다운
+   - Mobile(<=768): 헤더 정가운데 햄버거(줄3개) + 클릭 시 메뉴 펼침
+   - CSS only (checkbox)
 ===================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
-a {
-  text-decoration: none;
-  color: gray;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* =====================
-   HEADER
-===================== */
-header {
+/* ✅ header 선택자 통일 (너 HTML은 class="site-header") */
+.site-header{
   height: 70px;
   display: flex;
   align-items: center;
   background-color: gray;
   position: fixed;
   top: 0;
-  z-index: 9999;
+  left: 0;
   width: 100%;
+  z-index: 9999;
 }
 
-.nav { display: flex; align-items: center; flex: 1; justify-content: center; }
+/* nav 기본(PC) */
+.nav{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
 
-.menu { list-style: none; display: flex; gap: 30px; align-items: center; }
+/* 메뉴 기본(PC) */
+.menu{
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
 
-.nav-menu { display: inline-block; padding: 15px; color: black; }
-.nav-menu:hover { color: rgb(194, 194, 194); }
+.nav-menu{
+  display: inline-block;
+  padding: 15px;
+  color: black;
+}
+.nav-menu:hover{ color: rgb(194, 194, 194); }
 
-.menu-item { position: relative; }
+/* 드롭다운(PC hover) */
+.menu-item{ position: relative; }
 
-.dropdown-content {
+.dropdown-content{
   list-style: none;
   display: none;
   position: absolute;
@@ -46,212 +56,28 @@ header {
   background-color: rgba(255, 255, 255, 0.552);
   border: 1px solid rgba(255, 255, 255, 0.552);
 }
-.menu-item:hover .dropdown-content { display: block; }
+.menu-item:hover .dropdown-content{ display: block; }
 
-.dropdown-content li a {
+.dropdown-content li a{
   display: block;
   padding: 10px 12px;
   color: rgba(128, 128, 128, 0.8);
 }
-.dropdown-content li a:hover { background-color: #f0f0f0; color: gray; }
+.dropdown-content li a:hover{
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+/* ===== 햄버거/체크박스 기본(PC에선 숨김) ===== */
+.menu-toggle{ display: none; }
+.hamburger{ display: none; }
 
 /* =====================
-   MAIN
+   MOBILE (<=768px)
 ===================== */
-main {
-  /* ✅ fixed header 만큼 내려주기 (말려 올라감 방지) */
-  padding-top: 70px;
-
-  background-image: url("images/bg5.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  min-height: 100vh;
-
-  /* ✅ absolute 텍스트 기준점 */
-  position: relative;
-}
-
-/* 메인 텍스트 (main 기준으로 배치됨) */
-.ment1 {
-  position: absolute;
-  top: 100px;   /* ✅ 300 너무 내려가면 카드랑 겹침: 조절 */
-  left: 45px;
-  font-size: 1em;
-  color: lightgray;
-}
-
-.ment2 {
-  position: absolute;
-  top: 50px;   /* ment1보다 조금 아래 */
-  left: 45px;
-  font-size: 3em;
-  color: lightgray;
-}
-
-/* =====================
-   PRODUCT LIST (카드)
-===================== */
-.container {
-   min-height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.prod-list {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-    flex-wrap: wrap;   
-}
-
-.prod-list li { position: relative; }
-
-.prod-list img {
-  width: 300px;
-  height: 250px;
-  display: block;
-}
-
-/* 캡션 오버레이 */
-.prod-list .caption {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-
-  width: 100%;
-  height: 100px;
-  padding-top: 20px;
-
-  background-color: rgba(0, 0, 0, 0.437);
-  color: white;
-  text-align: center;
-
-  transform: translateY(100%);
-  transition: transform 0.6s ease-in-out;
-  z-index: 10;
-}
-.prod-list li:hover .caption { transform: translateY(0); }
-
-/* =====================
-   FOOTER VIDEO + CARDS
-===================== */
-.footer-video {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* ✅ video는 배경처럼: absolute여야 함 */
-.footer-video .bg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* ✅ 카드들은 video 위로 + 줄바꿈 반응형 */
-.footer-video .footer-cards {
-  position: relative;
-  z-index: 2;
-
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;          /* ✅ 6개 넘으면 아래로 떨어짐 */
-  justify-content: center;
-  align-content: center;
-  gap: 20px;
-
-  padding: 80px 20px;       /* 위아래 여백 */
-}
-
-.footer-video .card { position: relative; width: min(300px, 40vw); }
-
-.footer-video .card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-/* 푸터 캡션 */
-.footer-video .card .caption {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  padding-top: 20px;
-
-  background-color: rgba(0,0,0,0.437);
-  color: #fff;
-  text-align: center;
-
-  transform: translateY(100%);
-  transition: transform 0.6s ease-in-out;
-  z-index: 10;
-}
-.footer-video .card:hover .caption { transform: translateY(0); }
-
-/* =====================
-   BIZ FOOTER
-===================== */
-.biz-footer{
-  background: #f5f5f5;
-  color: #666;
-  padding: 30px 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.biz-inner{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 30px;
-}
-.biz-top{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  font-size: 13px;
-  margin-bottom: 14px;
-}
-.biz-top a{ color: #666; }
-.biz-top a:hover{ color: #222; }
-.biz-info{
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
-.biz-info p{ margin: 4px 0; }
-.biz-copy{
-  font-size: 12px;
-  color: #888;
-  border-top: 1px solid #ddd;
-  padding-top: 12px;
-}
-/* 체크박스 숨김 */
-.menu-toggle{
-  display: none;
-}
-
-/* 모바일: 햄버거를 헤더 정중앙에 고정 */
 @media (max-width: 768px){
 
-  .site-header{
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 70px;        /* 너 헤더 높이랑 맞추기 */
-    z-index: 10000;
-  }
-
-  /* ✅ 정가운데 햄버거 */
+  /* ✅ 햄버거: 헤더 정가운데(줄3개) */
   .hamburger{
     position: absolute;
     left: 50%;
@@ -268,7 +94,6 @@ main {
     z-index: 10001;
   }
 
-  /* ✅ 줄 세개 모양(고정) */
   .hamburger span{
     display: block;
     width: 28px;
@@ -277,34 +102,51 @@ main {
     border-radius: 2px;
   }
 
-  /* nav는 기본 접기 */
+  /* ✅ nav는 아래로 펼쳐지는 드롭다운 패널 */
   .nav{
     position: absolute;
-    top: 70px; /* 헤더 높이 */
+    top: 70px;     /* 헤더 높이 */
     left: 0;
     width: 100%;
     background: #eee;
+    flex: none;    /* PC flex 값 리셋 */
 
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.25s ease;
   }
 
-  /* 열리면 펼치기 */
+  /* ✅ 체크되면 메뉴 펼치기 */
   .menu-toggle:checked ~ .nav{
     max-height: 70vh;
   }
 
-  /* 메뉴는 세로로 */
+  /* 모바일 메뉴 세로 정렬 */
   .menu{
     flex-direction: column;
-    padding: 12px 16px;
     gap: 0;
+    padding: 12px 16px;
+    align-items: stretch;
   }
 
   .menu-item{
     padding: 10px 0;
     border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* ✅ 모바일에선 hover 드롭다운을 "항상 노출"로 처리(터치 hover 문제 회피) */
+  .dropdown-content{
+    display: block;
+    position: static;
+    transform: none;
+    min-width: auto;
+    padding: 6px 0 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .dropdown-content li a{
+    padding: 8px 0;
   }
 }
 
