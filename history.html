@@ -1,277 +1,233 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<style>
-        .gallery{
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 120px;
-            gap: 12px;
-            margin-top: 100px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History</title>
 
-            grid-template-areas: 
-            "a a b c"
-            "a a d c"
-            "e f d c";
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s ease;
-        animation: fadeUp 1s ease forwards;   
-        }
+    /* ✅ sticky footer 핵심 */
+    body{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+      padding-top: 70px; /* fixed header 높이 */
+    }
 
-        @keyframes fadeUp {
-            to{
-                opacity: 1;
-            transform: translateY(0);
-            }
-          }
-        
-        .gallery img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    /* 배경 비디오 */
+    .bg-video{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-        .a{
-            grid-area: a;
-        }
-        .b{
-            grid-area: b;
-        }
-        .c{
-            grid-area: c;
-        }
-        .d{
-            grid-area: d;
-        }
-        .e{
-            grid-area: e;
-        }
-        .f{
-            grid-area: f;
-        }
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
-        }
-        h1 {
-            font-size: 50px;
-            margin-top: 150px;
-        }
-        .container {
-            margin: 0;
-            padding: 0;
-        }
-        .title {
-            font-size: 50px;
-            line-height: 0;
-            margin-top: 150px;
-        }
-            
-        .subtit{
-            font-size: 40px;
-            margin-top: 50px;
-        }
-        .context{
-            font-size: 25px;
-        }
-        .biz-footer{
-  background: #f5f5f5;
-  color: #666;
-  padding: 30px 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    /* 헤더 */
+    header {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+      width: 100%;
+    }
 
-.biz-inner{
-  max-width: 1100px;
-  margin: 0;
+    .nav {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
 
-  padding: 0 30px;
-}
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
 
-.biz-top{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  font-size: 13px;
-  margin-bottom: 14px;
-}
+    a {
+      text-decoration: none;
+      color: gray;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.biz-top a{
-  color: #666;
-}
+    .nav-menu {
+      display: inline-block;
+      padding: 15px;
+      color: black;
+    }
 
-.biz-top a:hover{
-  color: #222;
-}
+    .nav-menu:hover {
+      color: rgb(194, 194, 194);
+    }
 
-.biz-info{
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
+    .menu-item { position: relative; }
 
-.biz-info p{
-  margin: 4px 0;
-}
+    .dropdown-content {
+      list-style: none;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 160px;
+      padding: 10px 0;
+      background-color: rgba(255, 255, 255, 0.552);
+      border: 1px solid rgba(255, 255, 255, 0.552);
+    }
 
-.biz-copy{
-  font-size: 12px;
-  color: #888;
-  border-top: 1px solid #ddd;
-  padding-top: 12px;
-}
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
+    .menu-item:hover .dropdown-content { display: block; }
 
-.nav-menu {
-  display: inline-block;
-  padding: 15px;
-  color: black;
-}
+    .dropdown-content li a {
+      display: block;
+      padding: 10px 12px;
+      color: rgba(128, 128, 128, 0.8);
+      background: transparent;
+    }
 
-.nav-menu:hover {
-  
-  color: rgb(194, 194, 194);
-}
+    .dropdown-content li a:hover {
+      background-color: #f0f0f0;
+      color: gray;
+    }
 
-/* 드롭다운 */
-.menu-item {
-  position: relative;
-}
+    /* ✅ main이 남는 높이 먹어서 footer를 바닥으로 밀어줌 */
+    main{
+      flex: 1;
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 60px 0;
+    }
 
-.dropdown-content {
-  list-style: none;
-  display: none;               /* 기본 숨김 */
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 160px;
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.552);
-  border: 1px solid rgba(255, 255, 255, 0.552);
-}
+    h1{
+      font-size: 50px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
 
-.menu-item:hover .dropdown-content {
-  display: block;              /* hover 시 표시 */
-}
+    hr{
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.4);
+      margin-bottom: 30px;
+    }
 
-.dropdown-content li a {
-  display: block;
-  padding: 10px 12px;
-  color: rgba(128, 128, 128, 0.8);
-  background: transparent;
-}
+    /* 갤러리 */
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 120px;
+      gap: 12px;
+      margin-top: 20px;
 
-.dropdown-content li a:hover {
-  background-color: #f0f0f0;
-  color: gray;
-}
-header {
-  height: 70px;
-  display: flex;
-  align-items: center;
-  background-color: gray;
-  position: fixed;
-  top: 0;
-  z-index: 9999;   /* 다른 요소 위로 */
-  width: 100%;
-}
+      grid-template-areas:
+        "a a b c"
+        "a a d c"
+        "e f d c";
 
-.logo {
-  margin-left: 30px;
-}
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+    }
 
-.logo img {
-  width: 200px;
-  height: 50px;
-  display: block;
-}
+    @keyframes fadeUp {
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.nav {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: center; /* 메뉴 가운데 */
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    .gallery img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
 
-a {
-  text-decoration: none;
-  color: gray;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    .a{ grid-area: a; }
+    .b{ grid-area: b; }
+    .c{ grid-area: c; }
+    .d{ grid-area: d; }
+    .e{ grid-area: e; }
+    .f{ grid-area: f; }
 
+    .container{
+      margin-top: 60px;
+    }
+
+    .title{
+      font-size: 50px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .subtit{
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .context{
+      font-size: 20px;
+      line-height: 1.8;
+      max-width: 900px;
+    }
+
+    /* 푸터 */
     .biz-footer{
-  background: #f5f5f5;
-  color: #666;
-  padding: 30px 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+      background: #f5f5f5;
+      color: #666;
+      padding: 30px 0;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 100%;
+    }
 
-.biz-inner{
-  max-width: 1100px;
-  margin: 0;
+    .biz-inner{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
 
-  padding: 0 30px;
-}
+    .biz-top{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
 
-.biz-top{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  font-size: 13px;
-  margin-bottom: 14px;
-}
+    .biz-top a{ color: #666; }
+    .biz-top a:hover{ color: #222; }
 
-.biz-top a{
-  color: #666;
-}
+    .biz-info{
+      font-size: 12px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
 
-.biz-top a:hover{
-  color: #222;
-}
+    .biz-info p{ margin: 4px 0; }
 
-.biz-info{
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 12px;
-}
-
-.biz-info p{
-  margin: 4px 0;
-}
-
-.biz-copy{
-  font-size: 12px;
-  color: #888;
-  border-top: 1px solid #ddd;
-  padding-top: 12px;
-}
-    </style>
+    .biz-copy{
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+  </style>
 </head>
-<header>
-<nav class="nav">
-      <ul class="menu">
-        <li class="menu-item">
-  
 
+<body>
+  <header>
+    <nav class="nav">
+      <ul class="menu">
         <li class="menu-item">
           <a href="#" class="nav-menu">PRODUCTS</a>
           <ul class="dropdown-content">
@@ -306,66 +262,57 @@ a {
         </li>
       </ul>
     </nav>
-    </header>
-<body>
-    <video autoplay muted loop
-       style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
-    <source src="images/305660_medium.mp4">
-</video>
+  </header>
+
+  <video class="bg-video" autoplay muted loop>
+    <source src="images/305660_medium.mp4" />
+  </video>
+
+  <main>
     <h1>History</h1>
     <hr>
+
     <div class="gallery">
-        <img class="a" src="images/그릇1.jpg" alt="">
-        <img class="b" src="images/그릇2.jpg" alt="">
-        <img class="c" src="images/그릇3.jpg" alt="">
-        <img class="d" src="images/그릇4.jpg" alt="">
-        <img class="e" src="images/bg5.jpg" alt="">
-        <img class="f" src="images/그릇6.jpg" alt="">
+      <img class="a" src="images/그릇1.jpg" alt="">
+      <img class="b" src="images/그릇2.jpg" alt="">
+      <img class="c" src="images/그릇3.jpg" alt="">
+      <img class="d" src="images/그릇4.jpg" alt="">
+      <img class="e" src="images/bg5.jpg" alt="">
+      <img class="f" src="images/그릇6.jpg" alt="">
     </div>
+
     <div class="container">
-    <p class="title">where my taste stays</p>
-    <p class="subtit">나의 취향이 머무는 곳, YIDO 입니다.</p>
-    <p class="context"> 취향을 채우는 스폐셜티 커피와 깊은 풍미를 더하는 추출 방식, <br>
-    커피향으로 가득 채워진 여유로운 공간까지. 모두 스타벅스 리저브에서 경험해 보세요.모두 스타벅스 리저브에서 경 <br>
-    모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요 <br>
-    모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요<br>
-    모두 스타벅스 리저브에서 경험해 보세요.모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요 <br>
-    모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요 <br>
-    모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요<br>
-    모두 스타벅스 리저브에서 경험해 보세요.모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요 <br>
-    모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요모두 스타벅스 리저브에서 경험해 보세요 <br>
-   </p>
+      <p class="title">where my taste stays</p>
+      <p class="subtit">나의 취향이 머무는 곳, YIDO 입니다.</p>
+      <p class="context">
+        이도도자기는 대한민국의 대표 도자기 그릇 브랜드입니다.<br>
+        우리는 흙과 유약, 시간의 결을 따라 당신의 일상에 조용한 한국의 아름다움을 더합니다.<br>
+        빠르게 채우기보다, 천천히 고르고 오래 쓰는 삶, 우리는 그런 선택을 만드는 도자기 그릇과 공간을 만듭니다.<br>
+      </p>
+    </div>
+  </main>
 
-    </div>
-<footer class="biz-footer">
-  <div class="biz-inner">
-    <div class="biz-top">
-      <a href="#">ABOUT</a>
-      <a href="#">회사소개</a>
-      <a href="#">매장안내</a>
-      <a href="#">입점상담</a>
-      <a href="#">개인정보처리방침</a>
-      <a href="#">이용약관</a>
-    </div>
+  <footer class="biz-footer" id="footer">
+    <div class="biz-inner">
+      <div class="biz-top">
+        <a href="#">ABOUT</a>
+        <a href="#">회사소개</a>
+        <a href="#">매장안내</a>
+        <a href="#">입점상담</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+      </div>
 
-    <div class="biz-info">
-      <p>상호명: 블루보틀코리아  대표: 홍길동  사업자등록번호: 123-45-67890</p>
-      <p>주소: 서울특별시 강남구 …  고객센터: 1644-4490 (평일 09:00~18:00)</p>
-      <p>통신판매업 신고번호: 제2026-서울강남-0000호  이메일: help@bluebottle.co.kr</p>
-    </div>
+      <div class="biz-info">
+        <p>상호명: 이도코리아 대표: 박서현 사업자등록번호: 123-45-67890</p>
+        <p>주소: 서울특별시 강남구 … 고객센터: 1644-4490 (평일 09:00~18:00)</p>
+        <p>통신판매업 신고번호: 제2026-서울강남-0000호 이메일: help@bluebottle.co.kr</p>
+      </div>
 
-    <div class="biz-copy">
-      © 2026 BLUE BOTTLE KOREA. ALL RIGHTS RESERVED
+      <div class="biz-copy">
+        © 2026 BLUE BOTTLE KOREA. ALL RIGHTS RESERVED
+      </div>
     </div>
-  </div>
-  
-</footer>
+  </footer>
 </body>
-
 </html>
-
-
-
-
-
-
